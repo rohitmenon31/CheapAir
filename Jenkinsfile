@@ -1,9 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'python:3.11' } // Python container
+    }
 
-    // Run every 10 minutes
     triggers {
-        cron('H/10 * * * *')
+        cron('H/10 * * * *') // every 10 minutes
     }
 
     stages {
@@ -15,10 +16,7 @@ pipeline {
 
         stage('Run Automation') {
             steps {
-                // Ensure Jenkins uses the correct Python path
-                withEnv(["PATH=/usr/bin:$PATH"]) {
-                    sh '/usr/bin/python3 Test1.py'
-                }
+                sh 'python Test1.py' // runs your script inside Python container
             }
         }
     }
