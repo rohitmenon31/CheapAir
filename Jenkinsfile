@@ -1,22 +1,24 @@
 pipeline {
     agent any
-
     triggers {
-        cron('H/10 * * * *') // every 10 minutes
+        cron('H/5 * * * *') // Runs every 5 minutes
     }
-
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-        stage('Run Automation') {
+        stage('Run Scenario 1') {
             steps {
                 sh 'python3 Test1.py'
             }
         }
+        stage('Run Scenario 2') {
+            steps {
+                sh 'python3 Test2.py'
+            }
+        }
+        stage('Run Scenario 3') {
+            steps {
+                sh 'python3 Test3.py'
+            }
+        }
     }
+}
 
-    post {
-        always {
