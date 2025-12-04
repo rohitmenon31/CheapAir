@@ -2,20 +2,25 @@ pipeline {
     agent any
 
     triggers {
-        cron('H/1 * * * *')
+        cron('H/10 * * * *')  // Run every 10 minutes
     }
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                sh 'echo Building...'
+                checkout scm
             }
         }
-        stage('Test') {
+        stage('Run Automation') {
             steps {
-                sh 'echo Testing...'
+                sh 'python3 Test1.py'
             }
         }
     }
-}
 
+    post {
+        always {
+            echo "Automation finished!"
+        }
+    }
+}
