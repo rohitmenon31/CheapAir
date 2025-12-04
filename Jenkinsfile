@@ -1,10 +1,8 @@
 pipeline {
-    agent {
-        docker { image 'python:3.11' }
-    }
+    agent any
 
     triggers {
-        cron('H/10 * * * *')
+        cron('H/10 * * * *') // Run every 10 minutes
     }
 
     stages {
@@ -19,5 +17,10 @@ pipeline {
             }
         }
     }
-}
 
+    post {
+        always {
+            echo "Automation finished!"
+        }
+    }
+}
