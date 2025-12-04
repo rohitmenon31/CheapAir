@@ -13,9 +13,9 @@ def test1() -> None:
             page.goto("https://www.cheapoair.ca/")
             
             # Fill "To where?"
-            page.get_by_label("To where?").click()
-            page.get_by_label("To where?").fill("bom")
-            page.get_by_text("BOM - Mumbai, India").click()
+           page.get_by_label("To where?").wait_for(timeout=60000)  # wait up to 60s
+           page.get_by_label("To where?").click()
+           page.get_by_text("BOM - Mumbai, India").click()
             
             # Choose dates
             page.get_by_label("Choose a departure date.").click()
@@ -40,6 +40,7 @@ def test1() -> None:
 
 if __name__ == "__main__":
     test1()
+
 
 
 
