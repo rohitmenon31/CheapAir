@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run Automation') {
             steps {
-                sh 'python3 Test1.py'
+                sh 'Test1.py'
             }
         }
     }
