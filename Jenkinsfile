@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'python:3.11' } // Python container
-    }
+    agent any
 
     triggers {
         cron('H/10 * * * *') // every 10 minutes
@@ -13,17 +11,12 @@ pipeline {
                 checkout scm
             }
         }
-
         stage('Run Automation') {
             steps {
-                sh 'python Test1.py' // runs your script inside Python container
+                sh 'python3 Test1.py'
             }
         }
     }
 
     post {
         always {
-            echo "Automation finished!"
-        }
-    }
-}
