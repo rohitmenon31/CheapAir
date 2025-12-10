@@ -1,24 +1,32 @@
 pipeline {
     agent any
     triggers {
-        cron('H/5 * * * *') // Runs every 5 minutes
+        cron('H/5 * * * *')
     }
     stages {
         stage('Run Scenario 1') {
             steps {
-                sh 'python3 Test1.py'
+                sh '''
+                    source venv/bin/activate
+                    python Test1.py
+                '''
             }
         }
         stage('Run Scenario 2') {
             steps {
-                sh 'python3 Test2.py'
+                sh '''
+                    source venv/bin/activate
+                    python Test2.py
+                '''
             }
         }
         stage('Run Scenario 3') {
             steps {
-                sh 'python3 Test3.py'
+                sh '''
+                    source venv/bin/activate
+                    python Test3.py
+                '''
             }
         }
     }
 }
-
